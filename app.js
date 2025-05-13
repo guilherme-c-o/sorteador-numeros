@@ -5,20 +5,26 @@ function sortear(){
 
     let sorteados = [];
 
-    if(de < ate){
-        for(let i = 0; i < quantidade; i++){
-            let numero = obterNumeroAleatorio(de, ate);
-        
-            while(sorteados.includes(numero)){
-                numero = obterNumeroAleatorio(de, ate);
-            }
-            
-            sorteados.push(numero);
-        }
-    }else{
+    if(de >= ate){ //proteção na entrada de valores
         alert("O valor de 'de' deve ser menor que o valor de 'até'.");
         return;
     }
+    if(quantidade > (ate - de + 1)){ //proteção no total de números sorteados
+        alert("A quantidade de números sorteados deve ser menor ou igual ao intervalo entre 'de' e 'até'.");
+        return;
+    }
+
+    
+    for(let i = 0; i < quantidade; i++){
+        let numero = obterNumeroAleatorio(de, ate);
+        
+        while(sorteados.includes(numero)){
+            numero = obterNumeroAleatorio(de, ate);
+        }
+            
+        sorteados.push(numero);
+    }
+  
 
     let resultado = document.getElementById("resultado");
     resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados:  ${sorteados}</label>`;
