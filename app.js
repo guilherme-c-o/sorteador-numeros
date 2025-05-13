@@ -5,14 +5,19 @@ function sortear(){
 
     let sorteados = [];
 
-    for(let i = 0; i < quantidade; i++){
-        let numero = obterNumeroAleatorio(de, ate);
+    if(de < ate){
+        for(let i = 0; i < quantidade; i++){
+            let numero = obterNumeroAleatorio(de, ate);
         
-        while(sorteados.includes(numero)){
-            numero = obterNumeroAleatorio(de, ate);
+            while(sorteados.includes(numero)){
+                numero = obterNumeroAleatorio(de, ate);
+            }
+            
+            sorteados.push(numero);
         }
-
-        sorteados.push(numero);
+    }else{
+        alert("O valor de 'de' deve ser menor que o valor de 'até'.");
+        return;
     }
 
     let resultado = document.getElementById("resultado");
